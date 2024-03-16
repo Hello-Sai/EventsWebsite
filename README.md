@@ -1,5 +1,5 @@
 # Events Page
-![Events page](image-1.png)
+![Events page](resource/image-1.png)
 
 This is the Events Page.
 
