@@ -83,7 +83,7 @@ class LoginAPI(APIView):
 class LogoutAPI(APIView):
     def get(self,request):
         logout(request)
-        print(request.data,request.session,request)
+        # print(request.data,request.session,request)
         response =  Response("Successfully Logged Out\n %s"%request.session)
         response.delete_cookie('id')
         return response

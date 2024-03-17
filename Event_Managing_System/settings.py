@@ -107,7 +107,7 @@ DATABASES = {
    # running at 3306
     "default":{
         "ENGINE":"django.db.backends.mysql",
-        "NAME":"eventmanage",
+        "NAME":"event_site",
         'USER': 'root',
         'PASSWORD': '',
         'HOST':'localhost',
