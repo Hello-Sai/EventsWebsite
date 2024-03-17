@@ -45,14 +45,15 @@ Alerts for Invalid Credentials
 # User Specific Events in My Events page
 ![alt text](resource/r1/image-44.png)
 
-# Likes Page . Likes will be differed with users. Each user have their own liked events
+# This is Likes Page.
+# Likes will be differed from users, each user has his own liked events.
 
 # It won't effect other users
 
 ![alt text](resource/r1/image-55.png)
 No Events liked
 
-# logged out and login with another user kumar to like the event
+# Currently logged out and signing in with another user "kumar" to like the previous user created event
 ![alt text](resource/r1/image-66.png)
 ![alt text](resource/r1/image-77.png)
 
