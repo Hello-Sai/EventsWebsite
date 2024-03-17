@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "corsheaders",#Here i added django corsheaders to handle xml,httprequests without interruption
     "events",
 ]
+
 #  Added rest_framework and corsheaders to handle requests
 # REST_FRAMEWORK = {
 #     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -112,6 +113,10 @@ DATABASES = {
         'HOST':'localhost',
         'PORT':'3306',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
 }
 
 

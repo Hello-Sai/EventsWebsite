@@ -5,6 +5,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
 #Created a model Event giving attributes as name,data, date ,time ,location,image ,is_liked,user_id
+
+def getusername(id):
+    return User.objects.get(id = id).username
+
 def upload_to(instance,filename):
     return f"images/{filename}"
 class Event(models.Model):
@@ -14,11 +18,12 @@ class Event(models.Model):
     time = models.TimeField(null=True,blank=True)
     location = models.CharField(max_length=100,null=True,blank=True)
     image = models.ImageField(upload_to=upload_to,null=True,blank=True)
-    is_liked = models.BooleanField(default=False)
-    user_id = models.BigIntegerField()
+    is_liked = models.ManyToManyField(User,related_name="liked_events")
+    user_id = models.IntegerField()
 
     def __str__(self):
-        return f"{self.name} ({self.id}) ({self.user_id})"
+        username = getusername(self.user_id)
+        return f"{self.name} by {username} "
 
     # def save(self,*args,**kwargs):
     #     try:
@@ -36,3 +41,6 @@ class Event(models.Model):
 #     events = models.ManyToManyField(Event,related_name="users")
 # class LikedUsers(models.Model):
 #     liked_events = models.ForeignKey(Event,on_delete=models.CASCADE,related_name="liked_users")
+# class User(AbstractUser):
+#     events = models.ManyToManyField(Event,related_name="users")
+#     liked_events = models.ForeignKey(Event,related_name="liked_users",on_delete=models.CASCADE)

@@ -48,16 +48,16 @@ class EventsAPI(ModelViewSet):
     #     return Response("Created Successfully")
     def perform_create(self, serializer):
         try:
-            print(self.request.user.id)
+            # print(self.request.user.id)
             serializer = serializer.save(user_id = self.request.user.id)
-            print(serializer.data)
+            # print(serializer.data)
         except Exception as e:
             print(e)
             return Response({'error':e},status=400)
         return Response("successfully Created")
 
     def partial_update(self, request, *args, **kwargs):
-        print("data is",request.data)
+        # print("data is",request.data)
         id = request.data["id"]
         try:
             event = self.get_queryset().get(id = id)
@@ -69,7 +69,7 @@ class EventsAPI(ModelViewSet):
 class LoginAPI(APIView):
     authentication_classes = (SessionAuthentication,)
     def post(self,request):
-        print(request.data)
+        # print(request.data)
         user = authenticate(**request.data)
         if not user:
             return Response("Invalid Username / Password",status=400)
@@ -94,7 +94,7 @@ class UserAPI(APIView):
     def get(self,request):
         # print(request.user.username,request.user.password,request.user.id)
         serializer = UserSerializer(request.user)
-        print(serializer.data)
+        # print(serializer.data)
         return Response(serializer.data)
         
 
@@ -111,10 +111,27 @@ class RegisterAPI(APIView):
     
 class LikedEventsAPI(APIView):
     def get(self,request):
-        liked_events = Event.objects.filter(is_liked=True)
+        liked_events = request.user.liked_events.all()
         # liked_events = liked_events.user_id.filter(id = request.user.id)
             # data = {'events':EventSerializer(liked_events,many=True).data}
             # print(liked_events,data)
             # return Response(data)
-        print(liked_events)
+        # print(liked_events)
         return Response({'events':EventSerializer(liked_events,many=True).data})
+    def post(self,request):
+        print("data = ",request.data)
+        try:
+            event_id = request.data.get('id')
+            is_liked = request.data.get('is_liked')
+            event_obj = Event.objects.get(id = event_id)
+            if is_liked:
+                event_obj.is_liked.add(request.user)
+                # print("add executed")
+            else:
+                # print(request.user)
+                event_obj.is_liked.remove(request.user)
+                # print("remove executed")
+        except Exception as e:
+            print("Error",e)
+            return Response({'error':e},status=400)
+        return Response("Successfully Executed")
