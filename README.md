@@ -36,10 +36,12 @@ Alerts for Invalid Credentials
 ![alt text](resource/r1/image-22.png)
 
 # Events can be shown lively
-![alt text](resource/r1/image-33.png)
+![image](https://github.com/Hello-Sai/EventsWebsite/assets/90458132/41f4c2e4-808b-4d49-bf00-c3320b3d90ff)
+
 
 # like button 
-![alt text](resource/image-6.png)
+![image](https://github.com/Hello-Sai/EventsWebsite/assets/90458132/9d39ebc2-53a6-45cc-9559-b41e1c2671fb)
+
 
 
 # User Specific Events in My Events page
